@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html layout:decorator="layout">
+	<head>
+		<title>Page Test</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	</head>
+	<body>
+
+		<div layout:fragment="content">
+			<div class="tabbable">
+				<ul class="nav nav-tabs">
+					<li role="presentation" th:attr="class=${activeTab}==null?'active' : ''">
+						<a href="#one" data-toggle="tab">Liste des clients</a>
+					</li>
+					<li role="presentation" th:attr="class=${activeTab}=='addClient'? 'active' : ''">
+						<a href="#two" data-toggle="tab">Ajouter un client</a>
+					</li>
+				</ul>
+				<div class="tab-content">
+					<div id="one" class="tab-pane" th:attrappend="class=${activeTab}==null? ' active' : ''">
+						<div th:include="client/widget/clientList :: clientList" />
+					</div>
+					<div id="two" class="tab-pane"
+						th:attrappend="class=${activeTab}=='addClient'? ' active' : ''">
+						<div th:include="client/widget/clientForm :: clientForm" />
+					</div>
+				</div><!-- /.tab-content -->
+			</div>
+		</div>
+
+
+<!-- 			<div class="alert alert-success" th:if="${#vars['flash.message']!= null}"> -->
+<!-- 				<p th:text="${#vars['flash.message']}" /> -->
+<!-- 			</div> -->
+
+<!-- 		</div> -->
+	</body>
+</html>

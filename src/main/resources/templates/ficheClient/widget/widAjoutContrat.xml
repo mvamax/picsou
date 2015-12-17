@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html layout:decorator="layout">
+	<head>
+		<title>Page Test</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	</head>
+	<body>
+
+		<div th:fragment="widAjoutContrat">
+			<div class="panel panel-default">
+				<div class="panel-body"
+					th:with="editable=${ (contrat.id != null) and (contrat.etatContrat.id >10)}">
+					<form
+						th:action="@{${contrat.id}==null?'/ficheClient/'+${clientId}+'/addnewcontrat':'/ficheClient/'+${clientId}+'/'+${contrat.id}}"
+						th:object="${contrat}" method="post" role="form">
+
+						<!-- ERRORS -->
+						<p th:if="${#fields.hasErrors('produitsContrat')}"> il n'y a aucune prestation dans le contrat</p>
+						<p th:if="${#fields.hasErrors('intitule')}"> certaines prestations n'ont pas d'intitule avec au
+							moins 3 caractères
+						</p>
+						<p th:if="${#fields.hasErrors('prix')}">certaines prestations n'ont pas de prix</p>
+
+						<fieldset>
+							<br></br>
+							<!-- <input type="date" name="anniversaire"/> -->
+							<div class="form-group hidden">
+								<label>Id:</label>
+								<input type="text" class="form-control" th:field="*{id}" />
+							</div>
+
+							<div class="form-group">
+								<label>Intitule:</label>
+								<input type="text" class="form-control" th:field="*{intitule}" />
+							</div>
+
+							<div class="form-group">
+								<label>Date d'échéance du contrat:</label>
+								<input id="datepicker2" type="text" placeholder="dd-MM-YYYY"
+									class="form-control" th:field="*{dateExecutionContrat}"
+									th:readonly="${editable}" th:disabled="${editable}" />
+							</div>
+
+							<div class="form-group">
+								<label class="radio-inline">
+									<input type="radio" th:value="10" th:field="*{etatContrat}">
+										<strong>En cours</strong>
+									</input>
+								</label>
+								<label class="radio-inline">
+									<input type="radio" th:value="20" th:field="*{etatContrat}">
+										<strong>Effectué - en attente de paiement</strong>
+									</input>
+								</label>
+								<label class="radio-inline">
+									<input type="radio" th:value="30" th:field="*{etatContrat}">
+										<strong>Terminé - effectué et payé</strong>
+									</input>
+								</label>
+							</div>
+
+							<input type="submit" value="ajouter une prestation" name="ParamAjoutPrestation"
+								class="btn btn-primary" th:disabled="${editable}" />
+							<table class="table">
+								<thead>
+									<tr>
+										<th>Categorie</th>
+										<th>Intitule</th>
+										<th>Prix</th>
+										<th>Deductible</th>
+										<th>Actions</th>
+									</tr>
+								</thead>
+
+								<tbody>
+									<tr th:each="produitContrat,rowStat: *{produitsContrat}">
+
+										<td>
+											<div class="form-group hidden">
+												<label>Id:</label>
+												<input type="text" class="form-control"
+													th:field="*{produitsContrat[__${rowStat.index}__].id}" />
+											</div>
+
+											<input type="hidden" th:value="${rowStat.index}"
+												th:attr="name=produitsContrat[__${rowStat.index}__].ordre"></input>
+
+											<select
+												th:field="*{produitsContrat[__${rowStat.index}__].typeProduit}"
+												name="typeProduit" class="form-control" title="Choisir une catégorie de produit"
+												th:readonly="${editable }">
+												<option th:each="type : ${types}" th:value="${type.type}"
+													th:text="${type.type}" th:disabled="${editable}" />
+											</select>
+										</td>
+										<td>
+											<input type="text" class="form-control"
+												th:field="*{produitsContrat[__${rowStat.index}__].intitule}"
+												th:readonly="${editable}" />
+
+										</td>
+										<td>
+											<input type="text" class="form-control"
+												th:field="*{produitsContrat[__${rowStat.index}__].prix}"
+												th:readonly="${editable }" />
+										</td>
+										<td>
+											<input type="checkbox" class="form-control"
+												th:field="*{produitsContrat[__${rowStat.index}__].estDeductible}" />
+										</td>
+										<td>
+											<button type="submit" class="btn btn-default btn-primary"
+												name="ParamRemovePrestation" th:value="${rowStat.index}" th:disabled="${editable}">
+												<span class="glyphicon glyphicon-remove"></span>
+											</button>
+											<!-- TODO -->
+<!-- 											<a> -->
+<!-- 												<span class="glyphicon glyphicon-arrow-up"></span> -->
+<!-- 											</a> -->
+<!-- 											<a> -->
+<!-- 												<span class="glyphicon glyphicon-arrow-down"></span> -->
+<!-- 											</a> -->
+										</td>
+									</tr>
+
+
+								</tbody>
+							</table>
+						</fieldset>
+						<p>
+							<input type="submit" value="Enregistrer" name="ParamSavePrestation"
+								class="btn btn-primary" />
+							<a th:href="${'/ficheClient/'+client.id+'?activeTab=widAjoutContrat'}" class="btn btn-primary">
+								Reset
+
+							</a>
+						</p>
+					</form>
+
+				</div>
+			</div>
+
+
+		</div>
+	</body>
+</html>

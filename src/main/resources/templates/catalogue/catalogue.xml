@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html layout:decorator="layout">
+	<head>
+		<title>Catalogue</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	</head>
+	<body>
+		<div layout:fragment="content">
+			<!-- <div class="row"> -->
+			<!-- <div class="col-sm-6" th:include="catalogue/widget/catalogueList 
+				:: catalogueList" /> -->
+			<!-- </div> -->
+			<div class="tabbable">
+			<ul class="nav nav-tabs">
+				<li role="presentation "   th:attr="class=${activeTab}==null?'active' : ''" >
+					<a href="#one"  data-toggle="tab">Liste des catégories</a>
+				</li>
+				<li role="presentation" th:attr="class=${activeTab}=='addTypeProduit'? 'active' : ''">
+					<a href="#two"  data-toggle="tab">Ajouter une catégorie de produit</a>
+				</li>
+<!-- 				<li role="presentation" th:attr="class=${activeTab}=='addProduit'? 'active' : ''"> -->
+<!-- 					<a href="#three"  data-toggle="tab">Ajouter un produit</a> -->
+<!-- 				</li> -->
+			</ul>
+			<div class="tab-content">
+				<div id="one" class="tab-pane" th:attrappend="class=${activeTab}==null? ' active' : ''">
+					<div th:include="catalogue/widget/catalogueList :: catalogueList" /> 
+				</div>
+				<div id="two" class="tab-pane" th:attrappend="class=${activeTab}=='addTypeProduit'? ' active' : ''">
+					<div th:include="catalogue/widget/catalogueAjoutType :: ajoutType" /> 
+				</div>
+<!-- 				<div id="three" class="tab-pane" th:attrappend="class=${activeTab}=='addProduit'? ' active' : ''"> -->
+<!-- 					<div th:include="catalogue/widget/catalogueAjoutProduit :: ajoutProduit" />  -->
+<!-- 				</div> -->
+			</div><!-- /.tab-content -->
+		</div>
+		</div>
+	</body>
+</html>

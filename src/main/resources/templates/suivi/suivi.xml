@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html layout:decorator="layout">
+	<head>
+		<title>Page Test</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	</head>
+	<body>
+
+		<div layout:fragment="content">
+
+			<div class="row">
+				<div class="col-lg-3 col-md-6">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-9">
+                                    <div class="huge" th:text="${nbContratsAEcheance}">26</div>
+                                    <div>Contrats à échéance dans les 7 jours</div>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="/suivi?etatContrat=A_ECHEANCE">
+                            <div class="panel-footer">
+                                <span class="pull-left">Afficher ces contrats</span>
+                                <div class="clearfix"></div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="panel panel-yellow">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-9">
+                                    <div class="huge" th:text="${nbContratsEnCours}">12</div>
+                                    <div>Contrat actuellement en cours!</div>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="/suivi?etatContrat=EN_COURS">
+                            <div class="panel-footer">
+                                <span class="pull-left">Afficher ces contrats</span>
+                                <div class="clearfix"></div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="panel panel-red">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-9">
+                                    <div class="huge" th:text="${nbContratsAttentePaiement}">124</div>
+                                    <div>Contrats en attente de paiement!</div>
+                                </div>
+                            </div>
+                        </div>
+                       <a href="/suivi?etatContrat=EN_ATTENTE_PAIEMENT">
+                            <div class="panel-footer">
+                                <span class="pull-left">Afficher ces contrats</span>
+                                <div class="clearfix"></div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="panel panel-green">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-9">
+                                    <div class="huge" th:text="${nbContratsTermines}">13</div>
+                                    <div>Contrats définitement terminés!</div>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="/suivi?etatContrat=TERMINE">
+                            <div class="panel-footer">
+                                <span class="pull-left">Afficher ces contrats</span>
+                                <div class="clearfix"></div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+			</div>
+				<br />
+				<div class="row">
+					<div class="panel panel-default">
+						<div class="panel-body">
+							<table id="contratTable" class="table table-striped table-bordered"
+								width="100%" cellspacing="0">
+								<thead>
+									<tr>
+										<th style="width: 150px;">intitule contrat</th>
+										<th style="width: 150px;">Client</th>
+										<th style="width: 150px;">Etat</th>
+										<th style="width: 150px;">date</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr th:each="contrat : ${contrats}">
+										<td th:text="${contrat.intitule}" />
+										<td>
+											<a href="/client/${contrat.client.id}" th:href="@{|/ficheClient/${contrat.client.id}|}"
+												th:text="|${contrat.client.nom} ${contrat.client.prenom}|"></a>
+										</td>
+										<td th:text="${contrat.etatContrat.intitule}">
+										</td>
+										<td th:text="${contrat.dateExecutionContrat==null?'Pas de date effective':#dates.format(contrat.dateExecutionContrat, 'dd/MM/yyyy')}">
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+				<script type="text/javascript">
+					$(document).ready(function() {
+					$('#contratTable').DataTable();
+					} );
+				</script>
+
+
+			</div>
+
+
+
+
+
+	</body>
+</html>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html layout:decorator="layout">
+	<head>
+		<title>Page Test</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	</head>
+	<body>
+
+		<div layout:fragment="content">
+
+			<div class="row">
+				<div class="panel well">
+
+					<form class="form-horizontal" action="/rapport" th:object="${rweb}" method="post" role="form">
+						<fieldset>
+							<!-- Select Basic -->
+							<div class="form-group">
+								<label class="col-md-4 control-label" for="selectbasic">Choisir une
+									année d'éxercice</label>
+								<div class="col-md-4">
+									<select class="form-control" title="Choisir une année d'exercice"
+									th:field="*{year}" onchange="this.form.submit()">
+									<option th:each="yearChoice : ${years}" th:value="${yearChoice}"
+										th:text="${yearChoice}">Credit card</option>
+								</select>
+								</div>
+							</div>
+
+						</fieldset>
+					</form>
+					
+				</div>
+			</div>
+
+
+			<div class="row">
+				<div class="col-lg-5 col-md-5">
+					<div class="panel panel-green">
+						<div class="panel-heading">
+							<div class="huge" th:text="${revenus}">0</div>
+							<div>Revenus sur l'année</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-2 col-md-2">
+
+				</div>
+				<div class="col-lg-5 col-md-5">
+					<div class="panel panel-red">
+						<div class="panel-heading">
+							<div class="huge" th:text="${revenus*0.2}">0 </div>
+							<div>Impots sur l'année avec imposition de 20 %</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+
+
+				<div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+
+				<table id="dataHistogram" style="display:none;"
+					class="table table-striped table-bordered" width="100%"
+					cellspacing="0">
+					<thead>
+						<th></th>
+						<th th:each="entry : ${histogram}" th:text="${entry.key}">Categorie</th>
+					</thead>
+					<tbody>
+						<tr th:each="month: ${months}">
+							<th th:text="${month.value}"></th>
+							<td th:each="entry : ${histogram}"
+								th:text="${entry.value[month.key]==null?O:entry.value[month.key]}"></td>
+						</tr>
+					</tbody>
+				</table>
+
+			</div>
+
+			<script type="text/javascript">
+				$(document).ready(function () {
+				$('#container').highcharts({
+				data: {
+				table: 'dataHistogram'
+				},
+				chart: {
+				type: 'column'
+				},
+				title: {
+				text: 'Total gains par mois et par type de prestations'
+				},
+				yAxis: {
+				allowDecimals:
+				false,
+				title: {
+				text: 'Units'
+				},
+				stackLabels: {
+				enabled: true,
+				style: {
+				fontWeight: 'bold',
+				/*<![CDATA[*/
+			color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
+			/*]]>*/
+				}
+				}
+				},
+				tooltip: {
+				formatter: function () {
+				return '<b>' + this.series.name + '</b><br />'+this.point.y + ' ' + this.point.name.toLowerCase();
+				}
+				},
+				plotOptions:
+				{
+				column: {
+				stacking: 'normal',
+				dataLabels: {
+				enabled: true,
+				/*<![CDATA[*/
+			color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white',
+			/*]]>*/
+				style: {
+				textShadow: '0 0 3px black'
+				}
+				}
+				}
+				},
+				});
+				});
+			</script>
+
+		</div>
+
+
+
+
+	</body>
+</html>

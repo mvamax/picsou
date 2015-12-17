@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html layout:decorator="layout">
+	<head>
+		<title>Page Test</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	</head>
+	<body>
+
+		<div layout:fragment="content">
+			<div class="tabbable">
+				<ul class="nav nav-tabs">
+					<li role="presentation" th:attr="class=${activeTab}==null?'active' : ''">
+						<a href="#one" data-toggle="tab">Informations client</a>
+					</li>
+					<li role="presentation" th:attr="class=${activeTab}=='widListContrat'? 'active' : ''">
+						<a href="#two" data-toggle="tab"
+							th:text="'Contrats de '+${client.nom}+' '+${client.prenom}">Contrats du client
+						</a>
+					</li>
+					<li th:if="${contrat.id!=null}">
+						<a th:href="${'/ficheClient/'+client.id+'?activeTab=widAjoutContrat'}">Ajouter un nouveau contrat</a>
+					</li>
+					<li role="presentation" th:attr="class=${activeTab}=='widAjoutContrat'? 'active' : ''">
+						<a th:if="${contrat.id==null}" href="#three" data-toggle="tab">Ajouter
+							un nouveau contrat
+						</a>
+						<a th:if="${contrat.id!=null}" href="#three" data-toggle="tab"
+							th:text="'Modifier le contrat numéro '+${contrat.id}">
+						</a>
+					</li>
+				</ul>
+				<div class="tab-content">
+					<div id="one" class="tab-pane" th:attrappend="class=${activeTab}==null? ' active' : ''">
+						<div th:include="client/widget/clientForm :: clientForm" />
+					</div>
+					<div id="two" class="tab-pane"
+						th:attrappend="class=${activeTab}=='widListContrat'? ' active' : ''">
+						<div th:include="ficheClient/widget/widListContrat:: widListContrat" />
+					</div>
+					<div id="three" class="tab-pane"
+						th:attrappend="class=${activeTab}=='widAjoutContrat'? ' active' : ''">
+						<div th:include="ficheClient/widget/widAjoutContrat:: widAjoutContrat" />
+					</div>
+				</div><!-- /.tab-content -->
+			</div>
+
+		</div>
+
+	</body>
+</html>

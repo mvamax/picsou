@@ -1,0 +1,12 @@
+annulation contrat/suppression contrat
+Modifier/payer
+
+livrable complet
+dump postgres
+
+authentification
+ajouter charge total dans le suivi
+deduction année
+
+
+datatable sur liste contrats

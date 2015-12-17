@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html layout:decorator="layout">
+	<head>
+		<title>Page Test</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	</head>
+	<body>
+		<div layout:fragment="content">
+			hello
+		</div>
+	</body>
+</html>

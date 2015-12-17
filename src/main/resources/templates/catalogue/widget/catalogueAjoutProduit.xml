@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html layout:decorator="layout">
+	<head>
+	</head>
+	<body>
+
+		<div th:fragment="ajoutProduit">
+			<div class="panel panel-default">
+				<div class="panel-body">
+
+					<form action="#" th:action="@{/catalogue/produit/add}"
+						th:object="${produit}" method="post" role="form">
+						<fieldset>
+							<div class="form-group">
+								<label>Type:</label>
+								<select th:field="*{catalogueType.id}" name="typeCatalogue"
+									class="form-control" title="Choisir une catégorie de produit">
+									<option th:each="type : ${types}" th:value="${type.id}"
+										th:text="${type.type}" />
+								</select>
+								<span class="help-inline" th:if="${#fields.hasErrors('catalogueType.id')}"
+									th:errors="*{catalogueType.id}"></span>
+							</div>
+							<div class="form-group">
+								<label class="control-label">Intitule:</label>
+								<input type="text" class="form-control" th:field="*{intitule}" />
+								<span class="help-inline" th:if="${#fields.hasErrors('intitule')}"
+									th:errors="*{intitule}"></span>
+							</div>
+							<div class="form-group">
+								<label class="control-label">Prix Reference:</label>
+								<input type="text" class="form-control" th:field="*{prixReference}" />
+								<span class="help-inline" th:if="${#fields.hasErrors('prixReference')}"
+									th:errors="*{prixReference}">TOTO</span>
+							</div>
+							<div class="form-group">
+								<label for="description" class="control-label" >Description:</label>
+								<textarea id="description" class="form-control" rows="5"
+									th:field="*{description}" />
+							</div>
+							<p>
+								<input type="submit" value="Enregistrer" />
+								<input type="reset" value="Reset" />
+							</p>
+						</fieldset>
+					</form>
+
+
+				</div>
+			</div>
+
+		</div>
+	</body>
+</html>

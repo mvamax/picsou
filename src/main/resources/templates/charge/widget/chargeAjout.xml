@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html layout:decorator="layout">
+	<head>
+	</head>
+	<body>
+
+		<div th:fragment="ajout">
+
+			<div class="panel panel-default">
+				<div class="panel-body">
+
+					<form action="#" th:action="@{/charge/add}" th:object="${charge}"
+						method="post" role="form">
+						<div class="form-group">
+								<label>Date de dépense:</label>
+								<input id="datepickerCharge" type="text" placeholder="dd-MM-YYYY"
+									class="form-control" th:field="*{date}"
+									th:readonly="${editable}" th:disabled="${editable}" />
+							</div>
+							
+						<div class="form-group">
+							<label for="intitule" class="control-label">
+								Intitule:
+							</label>
+							<input id="inputName" type="text" class="form-control"
+								th:field="*{intitule}" />
+							<span class="help-inline" th:if="${#fields.hasErrors('intitule')}"
+								th:errors="*{intitule}"></span>
+						</div>
+						<div class="form-group">
+							<label for="cout" class="control-label">
+								cout:
+							</label>
+							<input id="cout" type="text" class="form-control"
+								th:field="*{cout}" />
+							<span class="help-inline" th:if="${#fields.hasErrors('cout')}"
+								th:errors="*{cout}"></span>
+						</div>
+						<p>
+							<input type="submit" class="btn btn-primary" value="Enregistrer" />
+							<input type="reset" class="btn btn-primary" value="Reset" />
+						</p>
+					</form>
+
+
+				</div>
+			</div>
+
+		</div>
+	</body>
+</html>

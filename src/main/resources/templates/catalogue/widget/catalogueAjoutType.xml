@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html layout:decorator="layout">
+	<head>
+	</head>
+	<body>
+
+		<div th:fragment="ajoutType">
+
+			<div class="panel panel-default">
+				<div class="panel-body">
+
+					<form action="#" th:action="@{/catalogue/type/add}" th:object="${typeProduit}"
+						method="post" role="form">
+						<div class="form-group">
+							<label for="intitule" class="control-label">
+								Intitule:
+							</label>
+							<input id="inputName" type="text" class="form-control"
+								th:field="*{type}" />
+							<span class="help-inline" th:if="${#fields.hasErrors('type')}"
+								th:errors="*{type}"></span>
+						</div>
+						<p>
+							<input type="submit" value="Enregistrer" />
+							<input type="reset" value="Reset" />
+						</p>
+					</form>
+
+
+				</div>
+			</div>
+
+		</div>
+	</body>
+</html>

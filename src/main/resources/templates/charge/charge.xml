@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html layout:decorator="layout">
+	<head>
+		<title>Catalogue</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	</head>
+	<body>
+		<div layout:fragment="content">
+			<!-- <div class="row"> -->
+			<!-- <div class="col-sm-6" th:include="catalogue/widget/catalogueList 
+				:: catalogueList" /> -->
+			<!-- </div> -->
+			<div class="tabbable">
+			<ul class="nav nav-tabs">
+				<li role="presentation"   th:attr="class=${activeTab}==null?'active' : ''" >
+					<a href="#one"  data-toggle="tab">Liste des charges payées</a>
+				</li>
+				<li role="presentation" th:attr="class=${activeTab}=='addCharge'? 'active' : ''">
+					<a href="#two"  data-toggle="tab">Ajouter une charge</a>
+				</li>
+			</ul>
+			<div class="tab-content">
+				<div id="one" class="tab-pane" th:attrappend="class=${activeTab}==null? ' active' : ''">
+					<div th:include="charge/widget/chargeList :: chargeList" /> 
+				</div>
+				<div id="two" class="tab-pane" th:attrappend="class=${activeTab}=='addCharge'? ' active' : ''">
+					<div th:include="charge/widget/chargeAjout :: ajout" /> 
+				</div>
+			</div>
+		</div>
+		</div>
+	</body>
+</html>

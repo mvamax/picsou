@@ -1,0 +1,40 @@
+spring:
+    thymeleaf:
+        suffix: .xml
+        cache: true
+        prefix : classpath:/templates/
+        mode : HTML5
+    profiles:
+        active: dev
+    datasource:
+        dataSourceClassName: org.postgresql.ds.PGSimpleDataSource
+        url: jdbc:postgresql://localhost:5432/picsoudb
+        databaseName: picsoudb
+        serverName: localhost
+        username: postgres
+        password: postgres
+
+    jpa:
+        database-platform: org.hibernate.dialect.PostgreSQL82Dialect
+        database: POSTGRESQL
+        openInView: true
+        show_sql: false
+        generate-ddl: false
+        hibernate:
+            ddl-auto: update
+            naming-strategy: org.hibernate.cfg.EJB3NamingStrategy
+        properties:
+            hibernate.cache.use_second_level_cache: false
+            hibernate.cache.use_query_cache: false
+            hibernate.generate_statistics: false
+            hibernate.cache.region.factory_class: org.hibernate.cache.ehcache.SingletonEhCacheRegionFactory
+server:
+    port: 9001
+picsou:
+    report:
+        folderReportOut: /home/alexis/workspace/picsou/out
+        folderReportResources: /home/alexis/workspace/picsou/src/main/resources/report
+#       folderReportResources: /home/alexis/JaspersoftWorkspace/MyReports
+    database:
+        fill: false
+        init: true

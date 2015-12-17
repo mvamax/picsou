@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html layout:decorator="layout">
+	<head>
+		<title>Page Test</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	</head>
+	<body>
+
+		<div th:fragment="mesInformationsForm">
+
+			<div class="panel panel-default">
+				<div class="panel-heading">Mes informations</div>
+				<div class="panel-body">
+
+					<form action="#" th:action="@{/parametres/userinformations/add}"
+						th:object="${userInformations}" method="post" role="form">
+						<div class="form-group hidden">
+							<label>Id:</label>
+							<input type="text" class="form-control" th:field="*{id}" />
+						</div>
+						<div class="form-group">
+							<label>Nom:</label>
+							<input type="text" class="form-control" th:field="*{nom}" />
+							<span class="help-inline" th:if="${#fields.hasErrors('nom')}"
+								th:errors="*{nom}"></span>
+						</div>
+						<div class="form-group">
+							<label>Prenom:</label>
+							<input type="text" class="form-control" th:field="*{prenom}" />
+							<span class="help-inline" th:if="${#fields.hasErrors('prenom')}"
+								th:errors="*{prenom}"></span>
+						</div>
+						<div class="form-group">
+							<label>Nom Entreprise:</label>
+							<input type="text" class="form-control" th:field="*{nomEntreprise}" />
+							<span class="help-inline" th:if="${#fields.hasErrors('nomEntreprise')}"
+								th:errors="*{siret}"></span>
+						</div>
+						<div class="form-group">
+							<label>Siret:</label>
+							<input type="text" class="form-control" th:field="*{siret}" />
+							<span class="help-inline" th:if="${#fields.hasErrors('siret')}"
+								th:errors="*{siret}"></span>
+						</div>
+						<div class="form-group">
+							<label>Telephone:</label>
+							<input type="text" class="form-control" th:field="*{telephone}" />
+							<span class="help-inline" th:if="${#fields.hasErrors('telephone')}"
+								th:errors="*{telephone}"></span>
+						</div>
+						<div class="form-group">
+							<label>Email:</label>
+							<input type="text" class="form-control" th:field="*{email}" />
+							<span class="help-inline" th:if="${#fields.hasErrors('email')}"
+								th:errors="*{email}"></span>
+						</div>
+						<div class="form-group">
+							<label>
+								adresse - complément destinataire:
+								<i style="font-weight:normal"> (Appt 12 Escalier C)</i>
+							</label>
+							<input type="text" class="form-control" placeholder=""
+								th:field="*{adresse.champ1}" />
+							<span class="help-inline" th:if="${#fields.hasErrors('adresse.champ2')}"
+								th:errors="*{adresse.champ2}"></span>
+						</div>
+						<div class="form-group">
+							<label>
+								adresse - complément géographique:
+								<i style="font-weight:normal"> (Résidence les tilleuls)</i>
+							</label>
+							<input type="text" class="form-control" placeholder=""
+								th:field="*{adresse.champ3}" />
+							<span class="help-inline" th:if="${#fields.hasErrors('adresse.champ3')}"
+								th:errors="*{adresse.champ3}"></span>
+						</div>
+						<div class="form-group">
+							<label>
+								adresse - numéro et voie:
+								<i style="font-weight:normal"> (1 impasse de l Eglise)</i>
+							</label>
+							<input type="text" class="form-control" placeholder=""
+								th:field="*{adresse.champ4}" />
+							<span class="help-inline" th:if="${#fields.hasErrors('adresse.champ4')}"
+								th:errors="*{adresse.champ4}"></span>
+						</div>
+						<div class="form-group">
+							<label>
+								adresse - lieu dit:
+								<i style="font-weight:normal"> (AMAREINS)</i>
+							</label>
+							<input type="text" class="form-control" placeholder="AMAREINS"
+								th:field="*{adresse.champ5}" />
+							<span class="help-inline" th:if="${#fields.hasErrors('adresse.champ5')}"
+								th:errors="*{adresse.champ5}"></span>
+						</div>
+						<div class="form-group">
+							<label>
+								adresse - code postal et localité:
+								<i style="font-weight:normal"> (01090 FRANCHELEINS)</i>
+							</label>
+							<input type="text" class="form-control" placeholder=""
+								th:field="*{adresse.champ6}" />
+							<span class="help-inline" th:if="${#fields.hasErrors('adresse.champ6')}"
+								th:errors="*{adresse.champ6}"></span>
+						</div>
+						<div class="form-group">
+							<label>
+								adresse - pays:
+								<i style="font-weight:normal"> (France)</i>
+							</label>
+							<input type="text" class="form-control" placeholder="France"
+								th:field="*{adresse.champ7}" />
+							<span class="help-inline" th:if="${#fields.hasErrors('adresse.champ7')}"
+								th:errors="*{adresse.champ7}"></span>
+						</div>
+						<p>
+							<input
+								th:value="${#httpServletRequest.requestURL.toString().contains('ficheClient')?'Modifier':'Enregistrer'}"
+								type="submit" value="Enregistrer" />
+							<input type="reset" value="Reset" />
+						</p>
+					</form>
+
+
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

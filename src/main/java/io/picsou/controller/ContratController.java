@@ -269,7 +269,44 @@ public class ContratController {
 		return "ficheClient/ficheClient";
 	}
 
-	public void validate(Contrat contrat, BindingResult bindingResult) {
+	
+	
+	@RequestMapping(value = "/ficheClient/suppression/{clientId}/{contratId}", method = RequestMethod.GET)
+	public String suppressionContrat(@PathVariable Long clientId,
+			@PathVariable Long contratId, Model model) {
+
+		if(clientService.verifieAppartenanceClientContrat(clientId, contratId)){
+			log.info("supression de "+contratId);
+			contratService.delete(contratId);
+			log.info("redirection vers /ficheClient/"+clientId);
+			return "redirect:/ficheClient/"+clientId;
+		}
+	
+		return "index/index";
+	}
+	
+	@RequestMapping(value = "/ficheClient/contrat/effectue/{clientId}/{contratId}", method = RequestMethod.GET)
+	public String ChangeContratEffectue(@PathVariable Long clientId,
+			@PathVariable Long contratId) {
+		Contrat c = contratService.getContrat(contratId);
+		c.setEtatContrat(contratService
+				.getEtatContrat(EtatContratEnum.EN_ATTENTE_PAIEMENT.getValue()));
+		contratService.save(c);
+		return "redirect:/ficheClient/" + clientId;
+	}
+	
+	@RequestMapping(value = "/ficheClient/contrat/paye/{clientId}/{contratId}", method = RequestMethod.GET)
+	public String ChangeContratPaye(@PathVariable Long clientId,
+			@PathVariable Long contratId) {
+		Contrat c = contratService.getContrat(contratId);
+		c.setEtatContrat(contratService
+				.getEtatContrat(EtatContratEnum.TERMINE.getValue()));
+		contratService.save(c);
+		return "redirect:/ficheClient/" + clientId;
+	}
+	
+	
+	private void validate(Contrat contrat, BindingResult bindingResult) {
 		validator.validate(contrat, bindingResult);
 
 		for (ProduitContrat pc : contrat.getProduitsContrat()) {
@@ -278,7 +315,7 @@ public class ContratController {
 		}
 	}
 
-	public Model fillContrats(Model model, Long clientId) {
+	private Model fillContrats(Model model, Long clientId) {
 		model.addAttribute("contratsEnCours", contratService
 				.findByClientIdByEtatContratId(clientId,
 						EtatContratEnum.EN_COURS.getValue()));

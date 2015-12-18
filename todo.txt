@@ -1,12 +1,9 @@
-annulation contrat/suppression contrat
-Modifier/payer
+Pop up de suppression
 
 livrable complet
 dump postgres
-
 authentification
-ajouter charge total dans le suivi
-deduction année
 
+deduction année
 
 datatable sur liste contrats

@@ -1,5 +1,6 @@
 package io.picsou.service;
 
+import io.picsou.controller.CatalogueController;
 import io.picsou.domain.Contrat;
 import io.picsou.domain.EtatContrat;
 import io.picsou.domain.ProduitContrat;
@@ -9,13 +10,19 @@ import io.picsou.repository.EtatContratRepository;
 import java.sql.Date;
 import java.util.List;
 
+import org.jfree.util.Log;
 import org.joda.time.DateTime;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class ContratService {
 
+	private final Logger log = LoggerFactory
+			.getLogger(ContratService.class);
+	
 	@Autowired
 	ContratRepository contratRepository;
 
@@ -29,7 +36,12 @@ public class ContratService {
 	public List<Contrat> getAllContrats() {
 		return contratRepository.findAll();
 	}
+	
+	public void delete(Long id) {
+		contratRepository.delete(id);
+	}
 
+	
 	public void save(Contrat contrat) {
 		Float prix = 0f;
 		for (ProduitContrat c : contrat.getProduitsContrat()) {

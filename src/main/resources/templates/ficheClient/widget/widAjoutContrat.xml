@@ -130,9 +130,8 @@
 						<p>
 							<input type="submit" value="Enregistrer" name="ParamSavePrestation"
 								class="btn btn-primary" />
-							<a th:href="${'/ficheClient/'+client.id+'?activeTab=widAjoutContrat'}" class="btn btn-primary">
+							<a th:if="${contrat.id==null}" th:href="${'/ficheClient/'+client.id+'?activeTab=widAjoutContrat'}" class="btn btn-primary">
 								Reset
-
 							</a>
 						</p>
 					</form>

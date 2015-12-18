@@ -21,7 +21,7 @@
 									<select class="form-control" title="Choisir une année d'exercice"
 									th:field="*{year}" onchange="this.form.submit()">
 									<option th:each="yearChoice : ${years}" th:value="${yearChoice}"
-										th:text="${yearChoice}">Credit card</option>
+										th:text="${yearChoice}">year</option>
 								</select>
 								</div>
 							</div>
@@ -34,22 +34,35 @@
 
 
 			<div class="row">
-				<div class="col-lg-5 col-md-5">
-					<div class="panel panel-green">
+				<div class="col-lg-3 col-md-3">
+					<div class="panel panel-primary">
 						<div class="panel-heading">
 							<div class="huge" th:text="${revenus}">0</div>
 							<div>Revenus sur l'année</div>
 						</div>
 					</div>
 				</div>
-				<div class="col-lg-2 col-md-2">
-
+				<div class="col-lg-3 col-md-3">
+					<div class="panel panel-yellow">
+						<div class="panel-heading">
+							<div class="huge" th:text="${charges}">0</div>
+							<div>Charges sur l'année</div>
+						</div>
+					</div>
 				</div>
-				<div class="col-lg-5 col-md-5">
+				<div class="col-lg-3 col-md-3">
 					<div class="panel panel-red">
 						<div class="panel-heading">
-							<div class="huge" th:text="${revenus*0.2}">0 </div>
-							<div>Impots sur l'année avec imposition de 20 %</div>
+							<div class="huge" th:text="${impots}">0 </div>
+							<div>Impots sur l'année sur 20 %</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-3 col-md-3">
+					<div class="panel panel-green">
+						<div class="panel-heading">
+							<div class="huge" th:text="${benefices}">0 </div>
+							<div>In the pocket!</div>
 						</div>
 					</div>
 				</div>

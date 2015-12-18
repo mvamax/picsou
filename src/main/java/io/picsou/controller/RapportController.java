@@ -1,6 +1,7 @@
 package io.picsou.controller;
 
 import io.picsou.controller.web.RapportWeb;
+import io.picsou.service.ChargeService;
 import io.picsou.service.ContratService;
 import io.picsou.service.StatService;
 
@@ -34,6 +35,8 @@ public class RapportController {
 	@Autowired
 	ContratService contratService;
 
+	@Autowired
+	ChargeService chargeService;
 	
 	@ModelAttribute(value="years")
 	public List<String> years(){
@@ -71,9 +74,18 @@ public class RapportController {
 		RapportWeb rweb = new RapportWeb();
 		rweb.setYear(year);
 		log.info(year);
+		Long charges=chargeService.totalChargeByYear(rweb.getYear());
+		Map<String, Map<String, Long>> histogram = statService.getHistogram(rweb.getYear());
+		Long revenus=contratService.getRevenuByYear(rweb.getYear());
+		log.info(revenus.toString());
+		Long impots=(long) (0.2*revenus);
+		Long benefices=revenus-impots-charges;
 		model.addAttribute("rweb",rweb);
-		model.addAttribute("histogram", statService.getHistogram(rweb.getYear()));
-		model.addAttribute("revenus",contratService.getRevenuByYear(year));
+		model.addAttribute("charges",charges);
+		model.addAttribute("histogram", histogram);
+		model.addAttribute("revenus",revenus);
+		model.addAttribute("benefices",benefices);
+		model.addAttribute("impots",impots);
 		return pageTemplate;
 	}
 	
@@ -83,8 +95,17 @@ public class RapportController {
 			BindingResult bindingResult
 			) {
 		log.info(rweb.toString());
-		model.addAttribute("histogram", statService.getHistogram(rweb.getYear()));
-		model.addAttribute("revenus",contratService.getRevenuByYear(rweb.getYear()));
+		Long charges=chargeService.totalChargeByYear(rweb.getYear());
+		Map<String, Map<String, Long>> histogram = statService.getHistogram(rweb.getYear());
+		Long revenus=contratService.getRevenuByYear(rweb.toString());
+		Long impots=(long) (0.2*revenus);
+		Long benefices=revenus-impots-charges;
+		model.addAttribute("rweb",rweb);
+		model.addAttribute("charges",charges);
+		model.addAttribute("histogram", histogram);
+		model.addAttribute("revenus",revenus);
+		model.addAttribute("benefices",benefices);
+		model.addAttribute("impots",impots);
 		return pageTemplate;
 	}
 	

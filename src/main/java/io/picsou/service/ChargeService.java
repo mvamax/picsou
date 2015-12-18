@@ -21,4 +21,9 @@ public class ChargeService {
 	public void save(Charge charge){
 		chargeRepository.save(charge);
 	}
+	
+	public Long totalChargeByYear(String year){
+		Long res=chargeRepository.sumCountByYear(year);
+		return res==null?0:res;
+	}
 }

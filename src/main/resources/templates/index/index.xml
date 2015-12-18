@@ -6,7 +6,10 @@
 	</head>
 	<body>
 		<div layout:fragment="content">
-			hello
+		
+			<a href="https://github.com/mvamax/picsou/issues"> Problèmes à corriger </a>
+			
+			
 		</div>
 	</body>
 </html>

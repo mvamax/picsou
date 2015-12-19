@@ -1,9 +1,12 @@
 Pop up de suppression
 
 livrable complet
+permission softuser
 dump postgres
-authentification
+vérifier authentification /redirection
 
 deduction année
 
-datatable sur liste contrats
+
+listContrat deductible en cours
+lien vers home

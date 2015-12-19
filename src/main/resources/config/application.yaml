@@ -30,6 +30,11 @@ spring:
             hibernate.cache.region.factory_class: org.hibernate.cache.ehcache.SingletonEhCacheRegionFactory
 server:
     port: 9001
+    ssl:
+        key-store: classpath:keystore.p12
+        key-store-password: mvam92
+        keyStoreType: PKCS12
+        keyAlias: tomcat
 picsou:
     report:
         folderReportOut: /home/alexis/workspace/picsou/out

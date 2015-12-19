@@ -7,6 +7,7 @@ import io.picsou.service.ClientService;
 import io.picsou.service.UserInformationService;
 
 import java.io.File;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
@@ -16,15 +17,14 @@ import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
-import net.sf.jasperreports.engine.export.JRRtfExporter;
 import net.sf.jasperreports.engine.util.JRLoader;
-import net.sf.jasperreports.export.SimpleExporterInput;
-import net.sf.jasperreports.export.SimpleWriterExporterOutput;
 
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.ResourceLoader;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
@@ -42,10 +42,18 @@ public class FactureGenerationService {
 
 	@Autowired
 	ReportConfiguration reportConfiguration;
+	
+	@Autowired
+    private ResourceLoader resourceLoader;
 
-	public void generate(Long clientId, Long contratId, String type) throws JRException, SQLException {
+	public void generate(Long clientId, Long contratId, String type) throws JRException, SQLException, IOException {
+		
+	    Resource resource = resourceLoader.getResource(reportConfiguration.getFolderReportResources()+"/Facture.jasper");
+        File jasperReportResource = resource.getFile();
+		
+		
 		JasperReport jasperReport = (JasperReport) JRLoader
-				.loadObjectFromFile(reportConfiguration.getFolderReportResources()+"/Facture.jasper");
+				.loadObjectFromFile(jasperReportResource.getAbsolutePath());
 		
 		Map<String, Object> parameters = new HashMap<String, Object>();
 		

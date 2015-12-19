@@ -38,8 +38,8 @@ server:
 picsou:
     report:
         folderReportOut: /home/alexis/workspace/picsou/out
-        folderReportResources: /home/alexis/workspace/picsou/src/main/resources/report
-#       folderReportResources: /home/alexis/JaspersoftWorkspace/MyReports
+#        folderReportResources: /home/alexis/workspace/picsou/src/main/resources/report
+        folderReportResources: classpath:/report
     database:
         fill: false
         init: true

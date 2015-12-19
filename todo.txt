@@ -10,3 +10,6 @@ deduction année
 
 listContrat deductible en cours
 lien vers home
+bouton ajout Catalogue pas beau
+Paramètres impositions
+logo mvam picsou

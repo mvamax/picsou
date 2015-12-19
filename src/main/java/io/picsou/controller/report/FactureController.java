@@ -45,7 +45,7 @@ public class FactureController {
 	public FileSystemResource generateFacture(
 			@PathVariable Long clientId,
 			@PathVariable Long contratId,
-			HttpServletResponse response ) {
+			HttpServletResponse response ) throws IOException {
 		
 		String type="pdf";
 		

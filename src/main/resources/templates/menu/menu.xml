@@ -5,8 +5,8 @@
 	</head>
 	<body>
 		<div class="col-sm-2 col-md-2" th:fragment="menu">
-			<img src="/images/picsou.jpeg" style="background: transparent;" class="img-responsive" alt="Picsou image"></img>
-			<br/>
+<!-- 			<img src="/images/picsou.jpeg" style="background: transparent;" class="img-responsive" alt="Picsou image"></img> -->
+<!-- 			<br/> -->
 			<ul class="list-group">
 				<li class="list-group-item">
 					<a  href="/client">Clients</a>

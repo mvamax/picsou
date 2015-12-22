@@ -49,12 +49,13 @@ public class FactureGenerationService {
 	public void generate(Long clientId, Long contratId, String type) throws JRException, SQLException, IOException {
 		
 	    Resource resource = resourceLoader.getResource(reportConfiguration.getFolderReportResources()+"/Facture.jasper");
-        File jasperReportResource = resource.getFile();
+//        File jasperReportResource = resource.getFile();
+//		
+//		
+//		JasperReport jasperReport = (JasperReport) JRLoader
+//				.loadObjectFromFile(jasperReportResource.getAbsolutePath());
 		
-		
-		JasperReport jasperReport = (JasperReport) JRLoader
-				.loadObjectFromFile(jasperReportResource.getAbsolutePath());
-		
+	    JasperReport jasperReport = (JasperReport) JRLoader.loadObject(resource.getInputStream());
 		Map<String, Object> parameters = new HashMap<String, Object>();
 		
 		Client client= clientService.getClient(clientId);

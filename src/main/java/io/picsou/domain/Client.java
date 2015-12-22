@@ -17,12 +17,9 @@ import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Email;
-import org.springframework.data.domain.Auditable;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.sun.istack.internal.NotNull;
-
-import sun.misc.Timeable;
 
 @Entity
 @Table(name = "T_CLIENT", indexes = { 

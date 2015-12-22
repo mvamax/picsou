@@ -60,8 +60,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 					.invalidateHttpSession(true)
 					.deleteCookies("JSESSIONID")
 				.and()
-				.csrf()
-				.and()
 				.exceptionHandling()
 				.accessDeniedPage("/403")
 				.and()
@@ -69,6 +67,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .frameOptions()
             .disable()
            ;
+		
+		http
+		.csrf().disable();
 		
 		
 

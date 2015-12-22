@@ -1,14 +1,13 @@
 package io.picsou.report;
 
+
+
 import io.picsou.App;
 
 import java.io.File;
-import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
-import net.sf.jasperreports.engine.JRException;
-import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
@@ -42,7 +41,7 @@ public class JasperExecutionTest {
 					.loadObjectFromFile("/home/alexis/JaspersoftWorkspace/MyReports/Facture.jasper");
 			// Parameters for report
 			Map<String, Object> parameters = new HashMap<String, Object>();
-			parameters.put("contratId", 13);
+			parameters.put("contratId", 13L);
 			parameters.put("UserInfoContent", "user info client");
 			parameters.put("ClientInfosContent", "client info client");
 			parameters.put("imagePath", "/home/alexis/Images/logoMaxence.jpg");

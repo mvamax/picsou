@@ -11,24 +11,25 @@
 			<div class="row">
 				<div class="panel well">
 
-					<form class="form-horizontal" action="/rapport" th:object="${rweb}" method="post" role="form">
+					<form class="form-horizontal" action="/rapport" th:object="${rweb}"
+						method="post" role="form">
 						<fieldset>
 							<!-- Select Basic -->
 							<div class="form-group">
 								<label class="col-md-4 control-label" for="selectbasic">Choisir une
-									année d'éxercice</label>
+									année d'éxercice
+								</label>
 								<div class="col-md-4">
 									<select class="form-control" title="Choisir une année d'exercice"
-									th:field="*{year}" onchange="this.form.submit()">
-									<option th:each="yearChoice : ${years}" th:value="${yearChoice}"
-										th:text="${yearChoice}">year</option>
-								</select>
+										th:field="*{year}" onchange="this.form.submit()">
+										<option th:each="yearChoice : ${years}" th:value="${yearChoice}"
+											th:text="${yearChoice}">year</option>
+									</select>
 								</div>
 							</div>
-
 						</fieldset>
 					</form>
-					
+
 				</div>
 			</div>
 
@@ -120,7 +121,7 @@
 				},
 				tooltip: {
 				formatter: function () {
-				return '<b>' + this.series.name + '</b><br />'+this.point.y + ' ' + this.point.name.toLowerCase();
+				return '<b>' + this.series.name + '</b><br />'+this.point.y+ ' ' + this.point.name.toLowerCase();
 				}
 				},
 				plotOptions:

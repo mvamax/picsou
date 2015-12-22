@@ -97,7 +97,7 @@ public class RapportController {
 		log.info(rweb.toString());
 		Long charges=chargeService.totalChargeByYear(rweb.getYear());
 		Map<String, Map<String, Long>> histogram = statService.getHistogram(rweb.getYear());
-		Long revenus=contratService.getRevenuByYear(rweb.toString());
+		Long revenus=contratService.getRevenuByYear(rweb.getYear());
 		Long impots=(long) (0.2*revenus);
 		Long benefices=revenus-impots-charges;
 		model.addAttribute("rweb",rweb);

@@ -29,11 +29,6 @@ public class CatalogueController {
 	@Autowired
 	CatalogueService catalogueService;
 
-//	@ModelAttribute(value = "produits")
-//	public List<CatalogueProduit> produits() {
-//		return catalogueService.getAllProduitsInCatalogue();
-//	}
-
 	@ModelAttribute(value = "types")
 	public List<CatalogueType> types() {
 		return catalogueService.getAllTypesInCatalogue();
@@ -41,48 +36,29 @@ public class CatalogueController {
 
 	@RequestMapping(value = "/catalogue")
 	public String list(Model model) {
-//		model.addAttribute("produit", new CatalogueProduit());
 		model.addAttribute("typeProduit", new CatalogueType());
 		return page;
 	}
 
-//	@RequestMapping(value = "/catalogue/produit/add", method = RequestMethod.POST)
-//	public String list(
-//			@Valid @ModelAttribute("produit") CatalogueProduit catalogueProduit,
-//			BindingResult bindingResult, Model model,
-//			RedirectAttributes redirectAttrs) {
-//		
-//		if (bindingResult.hasErrors()) {
-//			log.info("erreur de binding");
-//			log.debug(bindingResult.toString());
-//			model.addAttribute("typeProduit", new CatalogueType());
-//			model.addAttribute("produit", catalogueProduit);
-//			model.addAttribute("activeTab", "addProduit");
-//			return page;
-//		}
-//		log.info("sauvegarde du catalogueProduit");
-//		catalogueService.saveProduitInCatalogue(catalogueProduit);
-//		redirectAttrs.addFlashAttribute("flash.message", "Produit enregistré");
-//		model.addAttribute("produit", new CatalogueProduit());
-//		return "redirect:/catalogue";
-//	}
 
 	@RequestMapping(value = "/catalogue/type/add", method = RequestMethod.POST)
 	public String list(
 			@Valid @ModelAttribute("typeProduit") CatalogueType catalogueType,
 			BindingResult bindingResult, Model model,
 			RedirectAttributes redirectAttrs) {
+		
 		if (bindingResult.hasErrors()) {
+			log.warn("binding result error");
 			model.addAttribute("typeProduit", catalogueType);
 			model.addAttribute("produit", new CatalogueProduit());
 			return page;
 		}
+		
 		String formatType = Character.toUpperCase(catalogueType.getType()
 				.charAt(0))
 				+ catalogueType.getType().substring(1).toLowerCase();
-		System.out.println(formatType);
 		catalogueType.setType(formatType);
-		System.out.println(catalogueType);
+		log.info("sauvegarde du nouveau label de catalogue");
 		catalogueService.saveTypeInCatalogue(catalogueType);
 		redirectAttrs.addFlashAttribute("flash.message", "type ["
 				+ catalogueType.getType() + "] enregistré");

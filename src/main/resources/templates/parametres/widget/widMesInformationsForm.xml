@@ -115,10 +115,10 @@
 								th:errors="*{adresse.champ7}"></span>
 						</div>
 						<p>
-							<input
+							<input class="btn btn-primary"
 								th:value="${#httpServletRequest.requestURL.toString().contains('ficheClient')?'Modifier':'Enregistrer'}"
 								type="submit" value="Enregistrer" />
-							<input type="reset" value="Reset" />
+							<input class="btn btn-primary" type="reset" value="Reset" />
 						</p>
 					</form>
 

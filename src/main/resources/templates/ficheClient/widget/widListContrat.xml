@@ -39,7 +39,7 @@
 								width="100%" cellspacing="0">
 								<thead>
 									<tr>
-										<th>Intitule</th>
+										<th>Description</th>
 										<th>Date prévue</th>
 										<th>Prix Total</th>
 										<th>Actions</th>
@@ -47,13 +47,11 @@
 								</thead>
 								<tbody>
 									<tr th:each="contrat : ${contratsEnCours}">
-										<!-- <form th:action="@{/contrat/form}" method="post" th:object="${contrat}" 
-											role="form"> -->
 										<td class="col-md-3">
 											<p th:text="${contrat.intitule==''?'Sans intitule':contrat.intitule}"></p>
 											<table class="table">
 												<tr>
-													<th>Prestation</th>
+													<th>Prestations</th>
 													<th>intitule</th>
 													<th>Prix</th>
 													<th>deductible?</th>
@@ -66,22 +64,6 @@
 												</tr>
 
 											</table>
-
-											<!-- <ul class="list-group"> -->
-											<!-- <li th:each="produit : ${contrat.produitsContrat}" -->
-
-											<!-- class=" list-group-item"> -->
-											<!-- <div class="input-group"> -->
-											<!-- <span> -->
-											<!-- <p th:text="${produit.typeProduit+'-'+produit.intitule+' 
-												: '+produit.prix}"></p> -->
-											<!-- <input type="checkbox" name="your-group" value="unit-in-group" 
-												/>deductible? -->
-											<!-- </span> -->
-											<!-- </div> -->
-											<!-- </li> -->
-											<!-- </ul> -->
-
 										</td>
 										<td class="col-md-2"
 											th:text="${contrat.dateExecutionContrat==null?'Pas de date effective':#dates.format(contrat.dateExecutionContrat, 'dd/MM/yyyy')}">
@@ -127,7 +109,7 @@
 								width="100%" cellspacing="0">
 								<thead>
 									<tr>
-										<th>Intitule</th>
+										<th>Description</th>
 										<th>Date prévue</th>
 										<th>Prix Total</th>
 										<th>Actions</th>
@@ -137,12 +119,21 @@
 									<tr th:each="contrat : ${contratsAttentePaiement}">
 										<td class="col-md-3">
 											<p th:text="${contrat.intitule==''?'Sans intitule':contrat.intitule}"></p>
-											<ul class="list-group">
-												<li th:each="produit : ${contrat.produitsContrat}"
-													th:text="${produit.typeProduit+'-'+produit.intitule+' : '+produit.prix}"
-													class=" list-group-item">
-												</li>
-											</ul>
+											<table class="table">
+												<tr>
+													<th>Prestations</th>
+													<th>intitule</th>
+													<th>Prix</th>
+													<th>deductible?</th>
+												</tr>
+												<tr th:each="produit : ${contrat.produitsContrat}">
+													<td th:text="${produit.typeProduit}">Eve</td>
+													<td th:text="${produit.intitule}">Eve</td>
+													<td th:text="${produit.prix}">Jackson</td>
+													<td th:text="${produit.estDeductible?'Oui':'Non'}">Jackson</td>
+												</tr>
+
+											</table>
 										</td>
 										<td class="col-md-2"
 											th:text="${contrat.dateExecutionContrat==null?'Pas de date effective':#dates.format(contrat.dateExecutionContrat, 'dd/MM/yyyy')}">
@@ -174,7 +165,7 @@
 								width="100%" cellspacing="0">
 								<thead>
 									<tr>
-										<th>Intitule</th>
+										<th>Description</th>
 										<th>Date prévue</th>
 										<th>Prix Total</th>
 										<th>Actions</th>
@@ -182,15 +173,33 @@
 								</thead>
 								<tbody>
 									<tr th:each="contrat : ${contratsTermine}">
-										<td class="col-md-3">
+									<td class="col-md-3">
 											<p th:text="${contrat.intitule==''?'Sans intitule':contrat.intitule}"></p>
-											<ul class="list-group">
-												<li th:each="produit : ${contrat.produitsContrat}"
-													th:text="${produit.typeProduit+'-'+produit.intitule+' : '+produit.prix}"
-													class=" list-group-item">
-												</li>
-											</ul>
+											<table class="table">
+												<tr>
+													<th>Prestations</th>
+													<th>intitule</th>
+													<th>Prix</th>
+													<th>deductible?</th>
+												</tr>
+												<tr th:each="produit : ${contrat.produitsContrat}">
+													<td th:text="${produit.typeProduit}">Eve</td>
+													<td th:text="${produit.intitule}">Eve</td>
+													<td th:text="${produit.prix}">Jackson</td>
+													<td th:text="${produit.estDeductible?'Oui':'Non'}">Jackson</td>
+												</tr>
+
+											</table>
 										</td>
+<!-- 										<td class="col-md-3"> -->
+<!-- 											<p th:text="${contrat.intitule==''?'Sans intitule':contrat.intitule}"></p> -->
+<!-- 											<ul class="list-group"> -->
+<!-- 												<li th:each="produit : ${contrat.produitsContrat}" -->
+<!-- 													th:text="${produit.typeProduit+'-'+produit.intitule+' : '+produit.prix}" -->
+<!-- 													class=" list-group-item"> -->
+<!-- 												</li> -->
+<!-- 											</ul> -->
+<!-- 										</td> -->
 										<td class="col-md-2"
 											th:text="${contrat.dateExecutionContrat==null?'Pas de date effective':#dates.format(contrat.dateExecutionContrat, 'dd/MM/yyyy')}">
 										</td>

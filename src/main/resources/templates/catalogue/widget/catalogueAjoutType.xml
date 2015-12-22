@@ -21,8 +21,8 @@
 								th:errors="*{type}"></span>
 						</div>
 						<p>
-							<input type="submit" value="Enregistrer" />
-							<input type="reset" value="Reset" />
+							<input class="btn btn-primary" type="submit" value="Enregistrer" />
+							<input class="btn btn-primary" type="reset" value="Reset" />
 						</p>
 					</form>
 

@@ -6,10 +6,27 @@
 	</head>
 	<body>
 		<div layout:fragment="content">
-		
-			<a href="https://github.com/mvamax/picsou/issues"> Problèmes à corriger </a>
-			
-			
+			<div class="row">
+				<div class="panel well">
+					<div class="panel-heading">
+						<b>Avant toute chose</b>
+					</div>
+					<div class="panel-body">
+						<ul>
+							<li>
+								Vérifiez que les informations sont correctement remplies dans la
+								partie "Paramètres"
+								<br />
+							</li>
+							<li>
+								Pour tout problème se créer un compte sous github et renseigner
+								une issue
+								<a href="https://github.com/mvamax/picsou/issues"> Problèmes à corriger </a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
 		</div>
 	</body>
 </html>

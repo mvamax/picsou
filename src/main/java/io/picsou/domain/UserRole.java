@@ -11,8 +11,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
-import org.springframework.boot.autoconfigure.web.ResourceProperties.Strategy;
-
 @Entity
 @Table(name = "T_USER_ROLE", 
 	uniqueConstraints = @UniqueConstraint(

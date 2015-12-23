@@ -3,7 +3,7 @@ package io.picsou.domain;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
-
+import io.picsou.domain.Adresse;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,13 +13,12 @@ import javax.persistence.Index;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Email;
 import org.springframework.format.annotation.DateTimeFormat;
-
-import com.sun.istack.internal.NotNull;
 
 @Entity
 @Table(name = "T_CLIENT", indexes = { 

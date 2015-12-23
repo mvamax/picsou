@@ -120,6 +120,7 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
 					<excludeDevtools>true</excludeDevtools>
+					<layout>ZIP</layout>
 				</configuration>
 			</plugin>
 
@@ -128,6 +129,7 @@
 				<artifactId>maven-assembly-plugin</artifactId>
 				<configuration>
 					<descriptor>src/main/resources/assembly/bin.xml</descriptor>
+
 				</configuration>
 				<executions>
 					<execution>

@@ -1,0 +1,32 @@
+logging:
+    file: /appli_data/logs/picsou.log
+    config: classpath:config/spring-logback.xml
+picsou:
+    report:
+        folderReportOut: /appli_data/out
+        folderReportResources: classpath:/report
+    database:
+        fill: false
+        init: false
+    schedule:
+        sauvegarde: true
+        sauvegarde_cron: 0 0 1 1 * *
+        scriptPath: /appli_data/picsou-0.0.1-SNAPSHOT/bin
+server:
+    port: 443
+spring:
+    thymeleaf:
+        cache: true
+    profiles:
+        active: prod
+    datasource:
+        dataSourceClassName: org.postgresql.ds.PGSimpleDataSource
+        url: jdbc:postgresql://localhost:5432/picsoudb
+        databaseName: picsoudb
+        serverName: localhost
+        username: postgres
+        password: postgres
+    jpa:
+        hibernate:
+            ddl-auto: update
+            naming-strategy: org.hibernate.cfg.EJB3NamingStrategy

@@ -22,18 +22,18 @@
       <fileMode>0755</fileMode>
     </fileSet>
     <fileSet>
-      <directory>src/main/resources/config</directory>
-      <outputDirectory>config</outputDirectory>
-      <includes>
-        <include>application-prod.yaml</include>
-        <include>spring-logback.xml</include>
-      </includes>
-    </fileSet>
-    <fileSet>
       <directory>target</directory>
       <outputDirectory>picsou</outputDirectory>
       <includes>
         <include>*.jar</include>
+      </includes>
+    </fileSet>
+     <fileSet>
+      <directory>prod</directory>
+      <outputDirectory>picsou/config</outputDirectory>
+      <includes>
+        <include>application-prod.yaml</include>
+        <include>spring-logback.xml</include>
       </includes>
     </fileSet>
 <!--     <fileSet> -->

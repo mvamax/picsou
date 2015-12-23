@@ -1,15 +1,10 @@
-Pop up de suppression
-
-livrable complet
+planfication tache vacuum + sauvegarde
 permission softuser
-dump postgres
-vérifier authentification /redirection
+restauraton et init
 
-deduction année
-
-
-listContrat deductible en cours
-lien vers home
-bouton ajout Catalogue pas beau
 Paramètres impositions
-logo mvam picsou
+
+Pop up de suppression
+listContrat order by date
+deduction année
+csrf

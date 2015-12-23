@@ -43,3 +43,8 @@ picsou:
     database:
         fill: false
         init: true
+    schedule:
+        sauvegarde: false
+        sauvegarde_cron: 0/10 * * * * *
+        scriptPath: /appli_data/picsou-0.0.1-SNAPSHOT/bin
+        

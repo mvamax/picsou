@@ -2,14 +2,13 @@ package io.picsou.domain;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
-
+import io.picsou.domain.Adresse;
 import org.hibernate.validator.constraints.Email;
+
 
 @Entity
 @Table(name="T_USERINFORMATION")

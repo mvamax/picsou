@@ -1,6 +1,5 @@
 package io.picsou.domain;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,11 +8,9 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import org.springframework.format.annotation.NumberFormat;
-
-import com.sun.istack.internal.NotNull;
 
 @Entity
 @Table(name="T_CATALOGUEPRODUIT")

@@ -1,6 +1,7 @@
 package io.picsou.service.report;
 
 import io.picsou.config.ReportConfiguration;
+import io.picsou.controller.CatalogueController;
 import io.picsou.domain.Client;
 import io.picsou.domain.UserInformation;
 import io.picsou.service.ClientService;
@@ -19,9 +20,12 @@ import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.util.JRLoader;
 
+import org.jfree.util.Log;
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
@@ -31,6 +35,10 @@ import org.springframework.stereotype.Service;
 @Service
 public class FactureGenerationService {
 
+
+	private final Logger log = LoggerFactory
+			.getLogger(FactureGenerationService.class);
+	
 	@Autowired
 	JdbcTemplate jdbcTemplate;
 	
@@ -49,11 +57,6 @@ public class FactureGenerationService {
 	public void generate(Long clientId, Long contratId, String type) throws JRException, SQLException, IOException {
 		
 	    Resource resource = resourceLoader.getResource(reportConfiguration.getFolderReportResources()+"/Facture.jasper");
-//        File jasperReportResource = resource.getFile();
-//		
-//		
-//		JasperReport jasperReport = (JasperReport) JRLoader
-//				.loadObjectFromFile(jasperReportResource.getAbsolutePath());
 		
 	    JasperReport jasperReport = (JasperReport) JRLoader.loadObject(resource.getInputStream());
 		Map<String, Object> parameters = new HashMap<String, Object>();
@@ -86,57 +89,62 @@ public class FactureGenerationService {
 
 	private String formatUserInfoContent(UserInformation userInformation){
 		String resultat="";
-		resultat+="<b>"+userInformation.getNomEntreprise()+"</b><br/><br/>";
-		if(userInformation.getAdresse().getChamp1()!=null && userInformation.getAdresse().getChamp1()!="" ){
+		resultat+="<b>"+userInformation.getNomEntreprise()+"</b><br/>Siret: "+userInformation.getSiret()+"<br/><br/>";
+		if(userInformation.getAdresse().getChamp1()!=null && userInformation.getAdresse().getChamp1().length()>0 ){
+			System.out.println("champ1 :" +userInformation.getAdresse().getChamp1() );
 			resultat+=""+userInformation.getAdresse().getChamp1()+"<br/>";
 		}
-		if(userInformation.getAdresse().getChamp2()!=null  && userInformation.getAdresse().getChamp2()!=""){
+		if(userInformation.getAdresse().getChamp2()!=null && userInformation.getAdresse().getChamp2().length()>0){
+			System.out.println("champ2"+userInformation.getAdresse().getChamp2());
 			resultat+=""+userInformation.getAdresse().getChamp2()+"<br/>";
 		}
-		if(userInformation.getAdresse().getChamp3()!=null && userInformation.getAdresse().getChamp3()!=""){
+		if(userInformation.getAdresse().getChamp3()!=null && userInformation.getAdresse().getChamp3().length()>0){
+			System.out.println("champ3"+userInformation.getAdresse().getChamp3());
 			resultat+=""+userInformation.getAdresse().getChamp3()+"<br/>";
 		}
-		if(userInformation.getAdresse().getChamp4()!=null && userInformation.getAdresse().getChamp4()!=""){
+		if(userInformation.getAdresse().getChamp4()!=null && userInformation.getAdresse().getChamp4().length()>0){
+			System.out.println("champ4");
 			resultat+=""+userInformation.getAdresse().getChamp4()+"<br/>";
 		}
-		if(userInformation.getAdresse().getChamp5()!=null && userInformation.getAdresse().getChamp5()!=""){
+		if(userInformation.getAdresse().getChamp5()!=null && userInformation.getAdresse().getChamp5().length()>0){
+			System.out.println("champ5");
 			resultat+=""+userInformation.getAdresse().getChamp5()+"<br/>";
 		}
-		if(userInformation.getAdresse().getChamp6()!=null && userInformation.getAdresse().getChamp6()!=""){
+		if(userInformation.getAdresse().getChamp6()!=null && userInformation.getAdresse().getChamp6().length()>0){
 			resultat+=""+userInformation.getAdresse().getChamp6()+"<br/>";
 		}
 		resultat+="<br/><b>Contact :</b><br/> ";
 		resultat+=""+userInformation.getEmail()+"<br/>";
 		resultat+=""+userInformation.getTelephone();
-
+		log.info(resultat);
 		return resultat;
 			
 		
 	}
 	private String formatClientInfosContent(Client client){
 		String resultat="";
-		resultat+="<b>"+client.getNom()+"</b> <b>"+client.getPrenom()+"</b><br/>";
+		resultat+="<b>"+client.getNom()+"</b> <b>"+client.getPrenom()+"</b><br/><br/>";
 		//TODO GENERICS
 		if(client.getAdresse()!=null){
-			if(client.getAdresse().getChamp1()!=null && client.getAdresse().getChamp1()!=""){
+			if(client.getAdresse().getChamp1()!=null && client.getAdresse().getChamp1().length()>0){
 				resultat+=""+client.getAdresse().getChamp1()+"<br/>";
 			}
-			if(client.getAdresse().getChamp2()!=null && client.getAdresse().getChamp2()!=""){
+			if(client.getAdresse().getChamp2()!=null && client.getAdresse().getChamp2().length()>0){
 				resultat+=""+client.getAdresse().getChamp2()+"<br/>";
 			}
-			if(client.getAdresse().getChamp3()!=null && client.getAdresse().getChamp3()!=""){
+			if(client.getAdresse().getChamp3()!=null && client.getAdresse().getChamp3().length()>0){
 				resultat+=""+client.getAdresse().getChamp3()+"<br/>";
 			}
-			if(client.getAdresse().getChamp4()!=null && client.getAdresse().getChamp4()!=""){
+			if(client.getAdresse().getChamp4()!=null && client.getAdresse().getChamp4().length()>0){
 				resultat+=""+client.getAdresse().getChamp4()+"<br/>";
 			}
-			if(client.getAdresse().getChamp5()!=null && client.getAdresse().getChamp5()!=""){
+			if(client.getAdresse().getChamp5()!=null && client.getAdresse().getChamp5().length()>0){
 				resultat+=""+client.getAdresse().getChamp5()+"<br/>";
 			}
-			if(client.getAdresse().getChamp6()!=null && client.getAdresse().getChamp6()!=""){
+			if(client.getAdresse().getChamp6()!=null && client.getAdresse().getChamp6().length()>0){
 				resultat+=""+client.getAdresse().getChamp6()+"<br/>";
 			}
-			if(client.getAdresse().getChamp7()!=null && client.getAdresse().getChamp7()!=""){
+			if(client.getAdresse().getChamp7()!=null && client.getAdresse().getChamp7().length()>0){
 				resultat+=""+client.getAdresse().getChamp7()+"<br/>";
 			}
 		}

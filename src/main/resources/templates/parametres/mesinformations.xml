@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html layout:decorator="layout">
+	<head>
+		<title>Paramètres</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	</head>
+	<body>
+
+		<div layout:fragment="content">
+		
+		<div th:include="parametres/widget/widMesInformationsForm :: mesInformationsForm" />
+		
+		
+
+
+		</div>
+	</body>
+</html>

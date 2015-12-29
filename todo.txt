@@ -1,10 +1,17 @@
-planfication tache vacuum + sauvegarde
+
+afficher resultat tache en mode admin
+auditableEvent connection
+actuator
+
 permission softuser
 restauraton et init
 
 Paramètres impositions
 
 Pop up de suppression
+
 listContrat order by date
 deduction année
 csrf
+
+spring batch admin

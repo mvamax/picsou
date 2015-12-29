@@ -1,4 +1,4 @@
-package io.picsou.controller;
+package io.picsou.controller.parametres;
 
 import io.picsou.domain.UserInformation;
 import io.picsou.service.UserInformationService;
@@ -15,14 +15,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
-public class ParametresController {
+public class ParametresMesInformationsController {
 
-	private final String page = "parametres/parametres";
+	private final String page = "parametres/mesinformations";
 	
 	@Autowired
 	UserInformationService userInformationService;
 	
-	@RequestMapping(value = "/parametres", method = RequestMethod.GET)
+	@RequestMapping(value = "/parametres/mesinformations", method = RequestMethod.GET)
 	public String parametres(Model model){
 		model.addAttribute("userInformations", userInformationService.findById(1L));
 		return page;
@@ -37,7 +37,7 @@ public class ParametresController {
 		}
 		userInformations.getAdresse();
 		userInformationService.save(userInformations);
-		return page;
+		return "redirect:/parametres/mesinformations";
 	}
 	
 }

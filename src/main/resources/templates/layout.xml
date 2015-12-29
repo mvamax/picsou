@@ -26,13 +26,16 @@
 		<script type="text/javascript" th:src="@{/webjars/jquery-ui/1.11.4/jquery-ui.min.js}"></script>
 		<script type="text/javascript">
 			$(document).ready(function() {
-			$( "#datepicker" ).datepicker({
+			$( "#datepicker"
+			).datepicker({
 			dateFormat: "dd-mm-yy"
 			});
-			$( "#datepicker2" ).datepicker({
+			$( "#datepicker2"
+			).datepicker({
 			dateFormat: "dd-mm-yy"
 			});
-			$( "#datepickerCharge" ).datepicker({
+			$( "#datepickerCharge"
+			).datepicker({
 			dateFormat: "dd-mm-yy"
 			});
 			});
@@ -57,8 +60,22 @@
 				</div>
 				<div id="navbar" class="navbar-collapse collapse">
 					<ul class="nav navbar-nav navbar-right">
-						<li>
-							<a href="/parametres">Paramètres</a>
+						<!-- <li> -->
+						<!-- <a href="/parametres">Paramètres</a> -->
+						<!-- </li> -->
+						<li class="dropdown">
+							<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+								Paramètres
+							</a>
+							<ul class="dropdown-menu">
+								<li style="background-color : inherit">
+									<a href="/parametres/mesinformations" style="color:#FFF;" > Mes informations</a>
+								</li>
+								<li >
+									<a href="/parametres/tauxImposition" style="color:#FFF;">Taux d'imposition</a>
+								</li>
+							</ul>
+							<!-- /.dropdown-user -->
 						</li>
 						<li>
 							<a href="/logout">Deconnection</a>

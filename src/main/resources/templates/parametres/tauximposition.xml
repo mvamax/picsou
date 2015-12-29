@@ -8,11 +8,9 @@
 
 		<div layout:fragment="content">
 		
-		<div th:include="parametres/widget/widMesInformationsForm :: mesInformationsForm" />
+<!-- 		<div th:include="parametres/widget/widMesInformationsForm :: mesInformationsForm" /> -->
 		
-		Poucentage imposition
-		
-		
+		Todo
 
 
 		</div>

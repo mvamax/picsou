@@ -20,8 +20,8 @@ public class ParametresTauxImpositionService {
 	ParametreImpositionRepository parametreImpositionRepository;
 	
 	public ParametreImposition getParametreImpositionAndCreateIfNotExistByYear(String year){
-		ParametreImposition res = parametreImpositionRepository.findAllByYear(year).get(0);
-		if(res==null){
+		 List<ParametreImposition> res = parametreImpositionRepository.findAllByYear(year);
+		if(res.size()==0){
 			log.info("creation du parametre d'imposition pour l'année "+year.toString());
 			ParametreImposition pimpotnouveau=new ParametreImposition();
 			pimpotnouveau.setTaux(20);
@@ -29,7 +29,7 @@ public class ParametresTauxImpositionService {
 			pimpotnouveau=parametreImpositionRepository.save(pimpotnouveau);
 			return pimpotnouveau;
 		}
-		return res;
+		return res.get(0);
 	}
 	
 	public void save(ParametreImposition pi){
@@ -38,6 +38,10 @@ public class ParametresTauxImpositionService {
 	
 	public List<ParametreImposition> findAll(){
 		return parametreImpositionRepository.findAll();
+	}
+
+	public  ParametreImposition findById(Long id) {
+		return parametreImpositionRepository.findOne(id);
 	}
 	
 }

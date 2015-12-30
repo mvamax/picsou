@@ -7,12 +7,43 @@
 	<body>
 
 		<div layout:fragment="content">
-		
-<!-- 		<div th:include="parametres/widget/widMesInformationsForm :: mesInformationsForm" /> -->
-		
-		Todo
+
+			<div class="panel panel-default">
+				<div class="panel-body">
+					<table id="tauxImpositionTable" class="table table-striped table-bordered"
+						width="100%" cellspacing="0">
+						<thead>
+							<tr>
+								<th style="width: 150px;text-align: center; ">Annee</th>
+								<th style="width: 150px;text-align: center; ">Taux</th>
+								<th style="width: 150px;text-align: center; ">Modifier</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="taux : ${tauxImpositions}">
+								<td style="text-align:center;" th:text="${taux.year}">
+								</td>
+								<td style="text-align:center;" th:text="${taux.taux}">
+								</td>
+								<td style="text-align:center;">
+									<a th:href="${'/parametres/tauximposition/'+taux.id}" type="button" class="btn btn-primary btn-sm"
+										>Modifier</a>
+								
+								
+								</td>
+
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+
+
+
+
 
 
 		</div>
+
 	</body>
 </html>

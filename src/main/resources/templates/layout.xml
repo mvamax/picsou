@@ -68,11 +68,11 @@
 								Paramètres
 							</a>
 							<ul class="dropdown-menu">
-								<li style="background-color : inherit">
-									<a href="/parametres/mesinformations" style="color:#FFF;" > Mes informations</a>
+								<li style="color:#333;">
+									<a href="/parametres/mesinformations" style="background-color:#101010;color:#FFF;" > Mes informations</a>
 								</li>
 								<li >
-									<a href="/parametres/tauxImposition" style="color:#FFF;">Taux d'imposition</a>
+									<a href="/parametres/tauximposition" style="background-color:#101010;color:#FFF;">Taux d'imposition</a>
 								</li>
 							</ul>
 							<!-- /.dropdown-user -->

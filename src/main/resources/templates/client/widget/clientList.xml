@@ -20,7 +20,7 @@
 						</thead>
 						<tbody>
 							<tr th:each="client : ${clients}">
-								<td>
+								<td >
 									<a href="/client/${client.id}" th:href="@{|/ficheClient/${client.id}|}"
 										th:text="|${client.nom} ${client.prenom}|"></a>
 								</td>

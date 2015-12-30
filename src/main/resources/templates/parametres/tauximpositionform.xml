@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html layout:decorator="layout">
+	<head>
+		<title>Paramètres</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	</head>
+	<body>
+
+		<div layout:fragment="content">
+
+			<div class="panel panel-default">
+				<div class="panel-body">
+
+					<form action="#" th:action="@{'/parametres/tauximposition/'+${pi.id}}"
+						th:object="${pi}" method="post" role="form">
+
+						<div class="form-inline">
+							<label for="intitule" class="control-label" th:text="${'taux d imposition pour l année '+pi.year+' : '}">
+								taux d imposition :
+							</label>
+							<input id="tauximposition" type="text" class="form-control" style="text-align:center;" th:field="*{taux}"  />
+							<span class="help-inline" th:if="${#fields.hasErrors('taux')}"
+								th:errors="*{taux}"></span>
+							<div class="form-group hidden">
+								<input id="id" type="text" class="form-control" th:field="*{id}" />
+							</div>
+							<div class="form-group hidden">
+								<input id="year" type="text" class="form-control" th:field="*{year}" />
+							</div>
+						</div>
+						<br></br>
+						<p>
+							<input class="btn btn-primary" type="submit" value="Enregistrer" />
+							<a href="/parametres/tauximposition" class="btn btn-primary"  >Annuler</a>
+						</p>
+					</form>
+
+
+
+				</div>
+			</div>
+
+
+
+
+
+
+		</div>
+
+	</body>
+</html>

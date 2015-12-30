@@ -1,8 +1,10 @@
 package io.picsou.controller;
 
 import io.picsou.controller.web.RapportWeb;
+import io.picsou.domain.ParametreImposition;
 import io.picsou.service.ChargeService;
 import io.picsou.service.ContratService;
+import io.picsou.service.ParametresTauxImpositionService;
 import io.picsou.service.StatService;
 
 import java.util.ArrayList;
@@ -38,6 +40,9 @@ public class RapportController {
 	@Autowired
 	ChargeService chargeService;
 	
+	@Autowired
+	ParametresTauxImpositionService  parametresTauxImpositionService;
+	
 	@ModelAttribute(value="years")
 	public List<String> years(){
 		List<String> years= new ArrayList<>();
@@ -71,14 +76,18 @@ public class RapportController {
 	public String rapport(Model model) {
 		int now = DateTime.now().getYear();
 		String year=(String.valueOf(now));
+		ParametreImposition pi = parametresTauxImpositionService.getParametreImpositionAndCreateIfNotExistByYear(year);
+		log.info("recuperation de l'année "+year);
+		log.info("recuperation du taux d'imposition "+pi.getId());
+	
 		RapportWeb rweb = new RapportWeb();
 		rweb.setYear(year);
-		log.info(year);
+		
 		Long charges=chargeService.totalChargeByYear(rweb.getYear());
 		Map<String, Map<String, Long>> histogram = statService.getHistogram(rweb.getYear());
 		Long revenus=contratService.getRevenuByYear(rweb.getYear());
 		log.info(revenus.toString());
-		Long impots=(long) (0.2*revenus);
+		Long impots=(long) (pi.getTaux()/100*revenus);
 		Long benefices=revenus-impots-charges;
 		model.addAttribute("rweb",rweb);
 		model.addAttribute("charges",charges);
@@ -86,6 +95,7 @@ public class RapportController {
 		model.addAttribute("revenus",revenus);
 		model.addAttribute("benefices",benefices);
 		model.addAttribute("impots",impots);
+		model.addAttribute("pi",pi);
 		return pageTemplate;
 	}
 	
@@ -95,10 +105,14 @@ public class RapportController {
 			BindingResult bindingResult
 			) {
 		log.info(rweb.toString());
+		
+		ParametreImposition pi = parametresTauxImpositionService.getParametreImpositionAndCreateIfNotExistByYear(rweb.getYear());
+		log.info("recuperation du taux d'imposition "+pi.getId());
+		
 		Long charges=chargeService.totalChargeByYear(rweb.getYear());
 		Map<String, Map<String, Long>> histogram = statService.getHistogram(rweb.getYear());
 		Long revenus=contratService.getRevenuByYear(rweb.getYear());
-		Long impots=(long) (0.2*revenus);
+		Long impots=(long) (pi.getTaux()/100*revenus);
 		Long benefices=revenus-impots-charges;
 		model.addAttribute("rweb",rweb);
 		model.addAttribute("charges",charges);
@@ -106,6 +120,7 @@ public class RapportController {
 		model.addAttribute("revenus",revenus);
 		model.addAttribute("benefices",benefices);
 		model.addAttribute("impots",impots);
+		model.addAttribute("pi",pi);
 		return pageTemplate;
 	}
 	

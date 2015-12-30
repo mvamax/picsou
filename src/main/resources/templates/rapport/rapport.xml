@@ -55,7 +55,7 @@
 					<div class="panel panel-red">
 						<div class="panel-heading">
 							<div class="huge" th:text="${impots}">0 </div>
-							<div>Impots sur l'année sur 20 %</div>
+							<div th:text="${'Impots sur l annee à '+pi.taux+'%'}">Impots sur l'année sur 20 %</div>
 						</div>
 					</div>
 				</div>
